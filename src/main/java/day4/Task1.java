@@ -8,25 +8,28 @@ public class Task1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int inputArrayLength = scanner.nextInt();
-        int countMoreThanEight = 0;
-        int countEqualsOne = 0;
-        int countEven = 0;
-        int countOdd = 0;
-        int arraySum = 0;
 
         int[] array = new int[inputArrayLength];
         Random random = new Random();
         for (int i = 0; i < array.length; i++) {
             array[i] = random.nextInt(11);
-            if (array[i] > 8) countMoreThanEight++;
-            if (array[i] == 1) countEqualsOne++;
-            if (array[i] % 2 == 0) {
+        }
+
+        int countMoreThanEight = 0;
+        int countEqualsOne = 0;
+        int countEven = 0;
+        int countOdd = 0;
+        int arraySum = 0;
+        for (int j : array) {
+            if (j > 8) countMoreThanEight++;
+            if (j == 1) countEqualsOne++;
+            if (j % 2 == 0) {
                 countEven++;
             } else {
                 countOdd++;
             }
 
-            arraySum += array[i];
+            arraySum += j;
         }
 
         System.out.println(Arrays.toString(array));
