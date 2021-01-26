@@ -10,7 +10,6 @@ public class Task3 {
 
         if (numA >= numB) {
             System.out.println("Некорректный ввод");
-            return;
         }
 
         ++numA;
