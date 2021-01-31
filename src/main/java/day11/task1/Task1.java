@@ -13,6 +13,13 @@ public class Task1 {
         System.out.println(picker.toString());
         System.out.println(courier.toString());
 
+        businessProcess(picker);
+        businessProcess(courier);
+
+        System.out.println(warehouse.toString());
+        System.out.println(picker.toString());
+        System.out.println(courier.toString());
+
         System.out.println("-----");
         Warehouse warehouse2 = new Warehouse();
         Picker picker2 = new Picker(warehouse2);

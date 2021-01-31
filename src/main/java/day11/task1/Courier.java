@@ -35,10 +35,15 @@ public class Courier implements Worker {
     public void bonus() {
         if (this.warehouse.getCountDeliveredOrders() < BONUSCOUNT) {
             System.out.println("Бонус пока не доступен");
-        } else {
-            this.isPayed = true;
-            this.salary += BONUSSALARY;
-            System.out.println("Бонус уже был выплачен");
+            return;
         }
+
+        if (this.isPayed) {
+            System.out.println("Бонус уже был выплачен");
+            return;
+        }
+
+        this.isPayed = true;
+        this.salary += BONUSSALARY;
     }
 }
