@@ -13,7 +13,7 @@ public class Message {
         this.sender = sender;
         this.receiver = receiver;
         this.message = message;
-        this.date = Calendar.getInstance().getTime();
+        this.date = new Date();
     }
 
     public User getSender() {
