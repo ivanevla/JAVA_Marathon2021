@@ -74,7 +74,7 @@ public class Task2 {
                     .collect(Collectors.toList())
                     .forEach(array -> {
                         double sum = array.stream().map(Double::parseDouble).reduce(Double::sum).get();
-                        double average = sum / cutSize;
+                        double average = sum / array.size();
                         printWriter.printf("%s ", average);
                     });
             printWriter.close();
