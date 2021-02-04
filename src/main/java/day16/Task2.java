@@ -42,13 +42,14 @@ public class Task2 {
 
     private static void generateFirstFile(File file) {
         try {
-            PrintWriter printWriter = new PrintWriter(file);
+//            PrintWriter printWriter = new PrintWriter(file);
 //            Random random = new Random();
 //            for (int i = 0; i < 1000; i++) {
 //                int randomNumber = random.nextInt(100);
 //                printWriter.printf("%d ", randomNumber);
 //            }
 
+            PrintWriter printWriter = new PrintWriter(file);
             IntStream.generate(() -> ThreadLocalRandom.current().nextInt(100))
                     .limit(1000)
                     .forEach(value -> printWriter.printf("%d ", value));
@@ -65,17 +66,31 @@ public class Task2 {
             PrintWriter printWriter = new PrintWriter(file2);
 
             String[] numbersStringArray = scanner.nextLine().split(" ");
+            List<String> numbersStringList = Arrays.asList(numbersStringArray);
             int cutSize = 20;
-            double sum = 0;
-            for (int i = 1; i <= numbersStringArray.length; i++) {
-                sum += Integer.parseInt(numbersStringArray[i-1]);
-                if (i % cutSize == 0) {
-                    double average = sum / cutSize;
-                    printWriter.printf("%s ", average);
-                    sum = 0;
-                }
-            }
+
+            IntStream.range(0, numbersStringList.size() / cutSize)
+                    .mapToObj(i -> numbersStringList.subList(i * cutSize, Math.min(cutSize * (i + 1), numbersStringList.size())))
+                    .collect(Collectors.toList())
+                    .forEach(array -> {
+                        double sum = array.stream().map(Double::parseDouble).reduce(Double::sum).get();
+                        double average = sum / cutSize;
+                        printWriter.printf("%s ", average);
+                    });
             printWriter.close();
+
+//            String[] numbersStringArray = scanner.nextLine().split(" ");
+//            int cutSize = 20;
+//            double sum = 0;
+//            for (int i = 1; i <= numbersStringArray.length; i++) {
+//                sum += Integer.parseInt(numbersStringArray[i-1]);
+//                if (i % cutSize == 0) {
+//                    double average = sum / cutSize;
+//                    printWriter.printf("%s ", average);
+//                    sum = 0;
+//                }
+//            }
+//            printWriter.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found!");
             e.printStackTrace();
