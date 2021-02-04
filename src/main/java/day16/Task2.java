@@ -5,8 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Task2 {
@@ -62,11 +65,12 @@ public class Task2 {
             PrintWriter printWriter = new PrintWriter(file2);
 
             String[] numbersStringArray = scanner.nextLine().split(" ");
+            int cutSize = 20;
             double sum = 0;
-            for (int i = 1; i <= numbersStringArray.length - 1; i++) {
-                sum += Integer.parseInt(numbersStringArray[i]);
-                if (i % 20 == 0) {
-                    double average = sum / 20;
+            for (int i = 1; i <= numbersStringArray.length; i++) {
+                sum += Integer.parseInt(numbersStringArray[i-1]);
+                if (i % cutSize == 0) {
+                    double average = sum / cutSize;
                     printWriter.printf("%s ", average);
                     sum = 0;
                 }
