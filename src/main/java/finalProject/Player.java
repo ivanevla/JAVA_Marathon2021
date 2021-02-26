@@ -16,4 +16,9 @@ public class Player {
     public BattleField getBattleField() {
         return battleField;
     }
+
+    public void printBattleField() {
+        System.out.println(String.format("поле игрока %s", this.name));
+        this.battleField.print();
+    }
 }

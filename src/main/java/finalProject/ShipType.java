@@ -18,9 +18,9 @@ public enum ShipType {
         this.typeName = typeName;
     }
 
-    public static ShipType findShipTypeByLength(int size) {
+    public static ShipType findShipTypeByLength(int length) {
         return Arrays.stream(ShipType.values())
-                .filter(f -> f.length == size)
+                .filter(f -> f.length == length)
                 .findFirst()
                 .get();
     }

@@ -12,6 +12,7 @@ public class CoordinatesValidator {
         validateNumbers(coordinatesArray);
         validateLength(coordinatesArray, shipType);
         validateIsShipValid(coordinatesArray);
+        validateBuffer(coordinatesArray, battleField);
         validateEmptyPlaceInBattleField(coordinatesArray, battleField);
     }
 
@@ -78,6 +79,22 @@ public class CoordinatesValidator {
         }
     }
 
+    // Размещаемый корабль не касается других кораблей сторонами и углами. То есть,
+    // вокруг каждого корабля должен быть “ореол” из одной клетки, на который не могут
+    // размещаться какие-либо другие корабли.
+    private static void validateBuffer(String[] coordinatesArray, BattleField battleField) throws Exception {
+        for (String c : coordinatesArray) {
+            String[] coordinate = c.split(",");
+
+            int i = Integer.parseInt(coordinate[0]);
+            int j = Integer.parseInt(coordinate[1]);
+
+            if (battleField.getField()[i][j].equals(BattleField.BUFFER)) {
+                throw new Exception("Размещаемый корабль касается других кораблей сторонами и углами");
+            }
+        }
+    }
+
     // Корабль размещается на свободном месте на карте.
     private static void validateEmptyPlaceInBattleField(String[] coordinatesArray, BattleField battleField) throws Exception {
         for (String c : coordinatesArray) {
@@ -91,10 +108,4 @@ public class CoordinatesValidator {
             }
         }
     }
-
-    // Размещаемый корабль не касается других кораблей сторонами и углами. То есть,
-    // вокруг каждого корабля должен быть “ореол” из одной клетки, на который не могут
-    // размещаться какие-либо другие корабли.
-    // РЕАЛИЗОВАННО в BattleField методе addShip -> addBuffer
-
 }
