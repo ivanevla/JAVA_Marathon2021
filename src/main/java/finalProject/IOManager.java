@@ -7,7 +7,6 @@ import java.util.stream.IntStream;
 
 public class IOManager {
     private final Scanner scanner = new Scanner(System.in);
-    private Player[] players;
 
     public void fillBattleFieldWithShips(Player player) {
         int startAskFrom = 4; // start from length 4, after 3, after 2, after 1
