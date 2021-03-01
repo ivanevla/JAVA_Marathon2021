@@ -71,9 +71,9 @@ public class BattleField {
                     case SHIP:
                         symbol = Emoji.SHIP.toString();
                         break;
-                    case BUFFER:
-                        symbol = Emoji.BLUE_SQUARE.toString();
-                        break;
+//                    case BUFFER:
+//                        symbol = Emoji.BLUE_SQUARE.toString();
+//                        break;
                     case HIT:
                         symbol = Emoji.RED_SQUARE.toString();
                         break;
