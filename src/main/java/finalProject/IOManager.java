@@ -53,6 +53,7 @@ public class IOManager {
             }
 
             battleField.addShip(userInput);
+            battleField.print();
         } while (startAskFrom != 0);
         print20EmptyLines();
     }

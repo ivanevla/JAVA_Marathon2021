@@ -26,8 +26,14 @@ public class CoordinatesValidator {
                 throw new Exception("координаты должны быть из 2 чисел");
             }
 
+            int number = Integer.MIN_VALUE;
             for (String s : split) {
-                int number = Integer.parseInt(s);
+                try {
+                    number = Integer.parseInt(s);
+                } catch (NumberFormatException e) {
+                    throw new Exception("координаты должны быть из 2 чисел");
+                }
+
                 if (!(number >= 0 && number <= 9)) {
                     throw new Exception("0 до 9");
                 }
@@ -62,7 +68,8 @@ public class CoordinatesValidator {
         boolean isVertical = Arrays.stream(arrayI).distinct().count() == 1;
         boolean isHorizontal = Arrays.stream(arrayY).distinct().count() == 1;
 
-        if ((isVertical && isHorizontal) || (!isVertical && !isHorizontal)) throw new Exception("не валидный корабль");
+        if ((isVertical && isHorizontal && arrayLength > 1) || (!isVertical && !isHorizontal))
+            throw new Exception("не валидный корабль");
 
         if (isVertical) {
             Arrays.sort(arrayY);
